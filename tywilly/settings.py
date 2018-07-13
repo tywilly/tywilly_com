@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["tywilly.com"]
 
 INSTALLED_APPS = [
     'main',
+    'album',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
