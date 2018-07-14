@@ -43,11 +43,14 @@
                 
 				<!-- Thumbnail -->
 				<section id="thumbnails">
+
+					{% for photo in photos %}
 						<article>
-							<a class="thumbnail" href="{% static 'album/images/fulls/portraits/DSC00130.jpg' %}" data-position="left center"><img src="{% static 'album/images/fulls/portraits/DSC00130.jpg' %}" alt="" /></a>
-							<h2>Diam tempus accumsan</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							<a class="thumbnail" href="{{ photo.image.url }}" data-position="left center"><img src="{{ photo.image.url }}" alt="" /></a>
+							<h2>{{ photo.name }}</h2>
+							<p>{{ photo.description }}</p>
 						</article> 
+					{% endfor %}
 				</section>
 
 				<!-- Footer -->

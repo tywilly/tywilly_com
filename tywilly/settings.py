@@ -25,8 +25,7 @@ SECRET_KEY = '^3v($gl5hjuckr($c+)i=w*j5&b1cuq5c@-2%o#0h5s4uy2@3b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["tywilly.com"]
-
+ALLOWED_HOSTS = ['tywilly.com', '127.0.0.1']
 
 # Application definition
 
@@ -41,13 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    #'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -76,13 +75,28 @@ WSGI_APPLICATION = 'tywilly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'tywilly_django',
+            'USER': 'tywilly',
+            'PASSWORD': '4udUt9CemRfwV5',
+            'HOST': 'tywilly.com',
+            'PORT': '3306',
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'tywilly_django',
+            'USER': 'tywilly',
+            'PASSWORD': '4udUt9CemRfwV5',
+            'HOST': '192.168.1.8',
+            'PORT': '3306',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -122,3 +136,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/tywilly_django/static'
+
+
+# Media Files
+
+MEDIA_ROOT = 'media/'
+MEDIA_URL = '/media/'
